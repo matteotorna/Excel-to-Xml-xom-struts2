@@ -175,9 +175,9 @@ function resetTool() {
 	}
 	// Reset files array
 	files = [];
-
-	resetContainerColor();
-
+	
+	const container = document.querySelector(".container");
+	container.style.backgroundColor = ""; // Imposta il colore predefinito vuoto per ripristinare il valore di default
 }
 resetButton.addEventListener("click", resetTool);
 
@@ -311,7 +311,7 @@ function downloadExampleFile() {
 			const url = URL.createObjectURL(blob);
 			const a = document.createElement('a');
 			a.href = url;
-			a.download = 'FattoriRipartizione.xlsx';
+			a.download = 'Vdt.xlsx';
 			document.body.appendChild(a);
 			a.click();
 			document.body.removeChild(a);
@@ -475,16 +475,3 @@ clearActivityButton.addEventListener("click", () => {
 		localStorage.removeItem("activities");
 	}
 });
-
-function resetContainerColor() {
-  const container = document.querySelector(".container");
-  const defaultColor = "#ffffff"; // Imposta il colore predefinito del container qui
-
-  // Resetti il colore dell'input di tipo "color" al valore predefinito
-  const containerColorInput = document.getElementById("container-color");
-  containerColorInput.value = defaultColor;
-
-  // Cambia anche il colore di sfondo del container
-  container.style.backgroundColor = defaultColor;
-}
-
