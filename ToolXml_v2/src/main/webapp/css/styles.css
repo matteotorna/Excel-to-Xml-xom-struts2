@@ -1,0 +1,707 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap')
+	;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #e0eafc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #cfdef3, #e0eafc);
+  background: linear-gradient(to right, #cfdef3, #e0eafc);
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+  font-size: 22px;
+  color: #1683ff;
+}
+
+.drag-area .support {
+	font-size: 12px;
+	color: gray;
+	margin: 10px 0 15px 0;
+}
+
+/* drag area  CSS */
+.drag-area {
+  height: 360px;
+  border: 3px dashed #e0eafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px auto;
+  border-radius: 20px;
+  position: relative;
+  background: rgba(224, 234, 252, 0.2);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.drag-area:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://image.freepik.com/free-vector/modern-geometric-background_53876-87740.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.drag-area:hover {
+  border-color: #1683ff;
+  background: rgba(22, 131, 255, 0.1);
+}
+
+.drag-area .icon {
+  font-size: 60px;
+  color: #1683ff;
+}
+
+.drag-area .header {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.drag-area .subheader {
+  font-size: 16px;
+  color: #555;
+}
+
+.drag-area .button {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1683ff;
+  text-decoration: underline;
+  padding-bottom: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.drag-area .button:hover {
+  color: #0d6efd;
+}
+
+.drag-area.active {
+  border: 3px solid #1683ff;
+  background: rgba(22, 131, 255, 0.1);
+}
+
+
+.drag-area img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  h3, h2 {
+    font-size: 18px;
+  }
+
+  .drag-area {
+    height: 300px;
+    grid-template-columns: 1fr;
+  }
+
+  .drag-area .icon {
+    font-size: 40px;
+  }
+
+  .drag-area .header {
+    font-size: 20px;
+  }
+
+  .drag-area .subheader {
+    font-size: 14px;
+  }
+  
+  .tab-content {
+    padding: 10px;
+  }
+  
+  #tab2 {
+    height: auto;
+    overflow-y: auto;
+  }
+}
+
+.download {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 6px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 3px 1px;
+	border-radius: 12px;
+	cursor: pointer;
+	width: 100%;
+}
+
+.download-btn {
+  margin-bottom: 10px;
+}
+
+.demo {
+	text-align: right;
+	font-weight: 400;
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.rainbow{
+	animation: rainbow 7s linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes rainbow{
+		100%,0%{
+			color: rgb(255,0,0);
+		}
+		8%{
+			color: rgb(255,127,0);
+		}
+		16%{
+			color: rgb(255,255,0);
+		}
+		25%{
+			color: rgb(127,255,0);
+		}
+		33%{
+			color: rgb(0,255,0);
+		}
+		41%{
+			color: rgb(0,255,127);
+		}
+		50%{
+			color: rgb(0,255,255);
+		}
+		58%{
+			color: rgb(0,127,255);
+		}
+		66%{
+			color: rgb(0,0,255);
+		}
+		75%{
+			color: rgb(127,0,255);
+		}
+		83%{
+			color: rgb(255,0,255);
+		}
+		91%{
+			color: rgb(255,0,127);
+		}
+}
+
+/* Barra di avanzamento */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.progress-container {
+  margin: 10px 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.progress-bar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.progress {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(-45deg, #06bcfb, #4884ee, #06bcfb, #4884ee);
+  background-size: 400% 400%;
+  border-radius: 15px;
+  width: 0;
+  transition: width 0.4s ease-in-out;
+  animation: gradient 3s ease infinite;
+}
+
+.progress-percent {
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+  color: #333;
+}
+
+/*fine barra*/
+.reset {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 6px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 1px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.download:disabled {
+  background-color: #b3b3b3; /* Cambia il colore di sfondo quando il pulsante è disabilitato */
+  cursor: not-allowed; /* Mostra un cursore "not-allowed" quando il pulsante è disabilitato */
+}
+
+.example {
+  background-color: #009688;
+  border: none;
+  color: white;
+  padding: 6px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 1px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	gap: 20px; /* Distanza tra i pulsanti */
+}
+
+.download:hover {
+  background-color: #388E3C;
+}
+
+.reset:hover {
+  background-color: #d32f2f;
+}
+
+.example:hover {
+  background-color: #00796B;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  background-color: #e0eafc;
+  border-radius: 10px;
+  overflow: hidden;
+  
+}
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+  
+}
+
+.tab-item {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  letter-spacing: 1px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #2196f3;
+  background-color: #fff;
+}
+.tab-item:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #2196f3;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-item:hover:before {
+  width: 100%;
+}
+
+.tab-item:focus {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.tab-item.active:before {
+  width: 100%;
+}
+
+.tab-item:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 3px;
+  background-color: #2196f3;
+  opacity: 0.3;
+}
+
+#tab2{
+	height: 71.8vh;
+	/* overflow-y: scroll; */
+}
+  
+#fileList {
+  list-style: none;
+  margin-top: 30px;
+}
+
+#fileList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiunge l'animazione per la trasformazione e l'ombra */
+}
+
+#fileList li:hover {
+  transform: scale(1.05); /* Ingrandisce l'elemento del 5% quando il mouse è sopra */
+  box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Ombra più grande e più scura quando il mouse è sopra */
+}
+
+#fileList li span {
+  font-size: 14px;
+}
+
+#fileList li span:nth-child(1) {
+  flex-basis: 70%;
+}
+
+#fileList li span:nth-child(2) {
+  flex-basis: 30%;
+  text-align: right;
+}
+
+#fileList li a {
+  color: #1683ff;
+  text-decoration: none;
+}
+
+#fileList li a:hover {
+  text-decoration: underline;
+}
+
+/* Pulsante Rimuovi */
+#fileList li button {
+  background-color: #1683ff; /*#1683ff*/
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+
+#fileList li button:hover {
+  background-color: #0000ff;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.submit-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #1683ff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #0d69de;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.file-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.remove-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.download-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.download-button:before {
+  content: "\2190";
+  margin-right: 5px;
+}
+
+.convert-button {
+    background-color: #1683ff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.convert-button:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+.loader-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loader:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #4caf50;
+  border-color: #1683ff transparent #1683ff transparent;
+  animation: loader 1.2s infinite;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#tab3{
+	height: 71.8vh;
+	/* overflow-y: scroll; */
+	position: relative;
+}
+
+.blue-color{
+	color: blue;
+}
+.setting {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.setting-container{
+	margin-top: 10px;
+}
+
+.toggle-container {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+} 
+
+.toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease; 
+  background-color: #1683ff !important;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .toggle-label {
+   transform: translateX(20px);
+}
+
+/* Tema scuro */
+.dark-mode {
+  background-color: #222;
+  color: #fff;
+}
+
+#saveButton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1683ff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 90px;
+}
+
+#saveButton:hover {
+  background-color: #f44336;
+}
+
+#activityContainer {
+  height: 230px; /* Altezza del box scrollabile */
+  overflow-y: scroll; /* Abilita lo scrolling verticale */
+  position: relative;
+  margin-top: 10px;
+}
+
+#activityItems {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#clearActivityButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1683ff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#dark{
+	margin-bottom: 10px;
+}
