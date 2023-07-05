@@ -108,8 +108,9 @@ function convertFileToXml(file) {
 			// Nasconde il loader in caso di errore
 			loader.style.display = "none";
 
-			addToActivityList(`Error converting file to XML: ${file.name}`);
 		});
+
+	addToActivityList(`File converted to XML: ${file.name}`);
 }
 
 
@@ -124,6 +125,8 @@ function createDownloadButton(file) {
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
+
+		addToActivityList(`File downloaded: ${file.name}`);
 
 	});
 	return downloadButton;
@@ -175,7 +178,7 @@ function resetTool() {
 	}
 	// Reset files array
 	files = [];
-	
+
 	const container = document.querySelector(".container");
 	container.style.backgroundColor = ""; // Imposta il colore predefinito vuoto per ripristinare il valore di default
 }
@@ -269,6 +272,7 @@ function displayFile() {
 		}
 		downloadButton.addEventListener("click", downloadFile);
 
+		addToActivityList(`File displayed: ${file.name}`);
 
 	}
 }
@@ -291,6 +295,8 @@ function downloadFile() {
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
+
+		addToActivityList(`File downloaded: ${file.name}`);
 	} else {
 		const errorMessage = document.getElementById("error-message");
 		if (errorMessage) {
