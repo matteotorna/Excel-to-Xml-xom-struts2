@@ -295,8 +295,9 @@ function downloadFile() {
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
-
+		
 		addToActivityList(`File downloaded: ${file.name}`);
+		
 	} else {
 		const errorMessage = document.getElementById("error-message");
 		if (errorMessage) {
