@@ -72,6 +72,13 @@
 
 		<div class="tab-content" id="tab2">
 			<h2>Lista dei file caricati:</h2>
+			<div class="sort-dropdown">
+				<label for="sort-select">Ordina per:</label> <select
+					id="sort-select">
+					<option value="name">Nome</option>
+					<option value="size">Dimensione</option>
+				</select>
+			</div>
 			<ul id="fileList"></ul>
 			<div class="loader-container">
 				<div class="loader" id="loader" style="display: none;"></div>
