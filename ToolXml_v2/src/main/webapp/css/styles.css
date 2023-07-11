@@ -762,3 +762,131 @@ h2 {
 #title-activity{
   margin-top: 10px;
 }
+
+.sort-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-dropdown label {
+  margin-right: 10px;
+}
+
+.sort-dropdown select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  width: 130px;
+  color: #555;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.sort-dropdown select::-ms-expand {
+  display: none;
+}
+
+.sort-dropdown select:focus {
+  outline: none;
+  background-color: #e8e8e8;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.sort-dropdown::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.3s;
+}
+
+.sort-dropdown.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Aggiungi animazioni per mostrare/nascondere il dropdown */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-20px) scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Aggiungi uno stile personalizzato per l'opzione selezionata */
+.sort-dropdown select option:checked {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+/* Migliora lo stile delle opzioni del dropdown */
+.sort-dropdown select option {
+  padding: 8px 20px;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sort-dropdown select option:hover {
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+/* Aggiungi animazione di popup */
+.sort-dropdown.open select option {
+  animation: slideIn 0.5s cubic-bezier(0.5, 0, 0.2, 1);
+}
+
+.sort-dropdown.close select option {
+  animation: slideOut 0.5s cubic-bezier(0.5, 0, 0.2, 1);
+}
+
+/* Stile personalizzato per il dropdown */
+.sort-dropdown select {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sort-dropdown::after {
+  color: #555;
+  font-size: 12px;
+}
+
+.sort-dropdown.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.sort-dropdown.open select {
+  border-color: #007bff;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
