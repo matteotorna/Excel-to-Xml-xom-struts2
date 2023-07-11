@@ -11,6 +11,9 @@ const exampleButton = document.getElementById("exampleButton");
 const activityItems = document.getElementById("activityItems");
 const clearActivityButton = document.getElementById("clearActivityButton");
 
+const sortSelect = document.getElementById("sort-select");
+const sortDropdown = document.querySelector(".sort-dropdown");
+
 let files = [];
 
 downloadButton.disabled = true;
@@ -19,43 +22,57 @@ downloadButton.disabled = true;
 loadSavedActivities();
 
 //Functions
+
 function addFileToList(file) {
+  files.push(file);
+  renderFileList();
+  addToActivityList(`File uploaded: ${file.name}`);
+}
 
-	console.log(file); // Log the entire file object
-	console.log(file.size); // Log just the file size
+function renderFileList() {
+  const fileList = document.getElementById("fileList");
+  fileList.innerHTML = "";
 
-	files.push(file);
+  files.forEach((file) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${file.name} - ${(file.size / 1024).toFixed(2)} KB`;
 
-	const fileSizeInKB = (file.size / 1024).toFixed(2); // Calcola la dimensione del file
-	console.log(`File size: ${fileSizeInKB} KB`); // Stampa la dimensione del file
+    const fileActionButtons = document.createElement("div");
+    fileActionButtons.classList.add("file-action-buttons");
 
-	const listItem = document.createElement("li");
-	//listItem.textContent = file.name; vedi solo il nome del file
-	listItem.textContent = `${file.name} - ${(file.size / 1024).toFixed(2)} KB`; // Aggiunge il nome del file e la dimensione del file
+    const downloadButton = createDownloadButton(file);
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Delete";
+    removeButton.classList.add("file-action-button", "remove-button");
+    removeButton.addEventListener("click", () => {
+      files = files.filter((f) => f !== file);
+      renderFileList();
+    });
 
-	console.log(listItem.textContent);
+    const convertButton = createConvertButton(file);
+    fileActionButtons.appendChild(convertButton);
+    fileActionButtons.appendChild(downloadButton);
+    fileActionButtons.appendChild(removeButton);
 
-	const fileActionButtons = document.createElement("div");
-	fileActionButtons.classList.add("file-action-buttons");
+    listItem.appendChild(fileActionButtons);
+    fileList.appendChild(listItem);
+  });
+}
 
-	const downloadButton = createDownloadButton(file);
-	const removeButton = document.createElement("button");
-	removeButton.textContent = "Delete";
-	removeButton.classList.add("file-action-button", "remove-button");
-	removeButton.addEventListener("click", () => {
-		files = files.filter((f) => f !== file);
-		listItem.remove();
-	});
+function sortFilesBy(property) {
+  files.sort((a, b) => {
+    if (property === 'name') {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    } else if (property === 'size') {
+      return a.size - b.size;
+    }
+  });
 
-	const convertButton = createConvertButton(file);
-	fileActionButtons.appendChild(convertButton);
-	fileActionButtons.appendChild(downloadButton);
-	fileActionButtons.appendChild(removeButton);
-
-	listItem.appendChild(fileActionButtons);
-	document.getElementById("fileList").appendChild(listItem);
-
-	addToActivityList(`File uploaded: ${file.name}`);
+  renderFileList();
 }
 
 function createConvertButton(file) {
@@ -211,7 +228,6 @@ for (let i = 0; i < tabs.length; i++) {
 		activateTab(tabs[i]);
 	});
 }
-
 
 function displayFile() {
 	if (file) {
@@ -482,3 +498,21 @@ clearActivityButton.addEventListener("click", () => {
 		localStorage.removeItem("activities");
 	}
 });
+
+
+sortSelect.addEventListener('change', (event) => {
+  const selectedProperty = event.target.value;
+  sortFilesBy(selectedProperty);
+});
+
+sortSelect.addEventListener('click', () => {
+  sortDropdown.classList.toggle('open');
+});
+
+document.addEventListener('click', (event) => {
+  const targetElement = event.target;
+  if (!sortDropdown.contains(targetElement)) {
+    sortDropdown.classList.remove('open');
+  }
+});
+
