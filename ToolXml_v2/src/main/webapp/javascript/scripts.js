@@ -10,9 +10,9 @@ const resetButton = document.getElementById("resetButton");
 const exampleButton = document.getElementById("exampleButton");
 const activityItems = document.getElementById("activityItems");
 const clearActivityButton = document.getElementById("clearActivityButton");
-
 const sortSelect = document.getElementById("sort-select");
 const sortDropdown = document.querySelector(".sort-dropdown");
+const deleteAllButton = document.getElementById("deleteAllButton");
 
 let files = [];
 
@@ -42,7 +42,7 @@ function renderFileList() {
 
     const downloadButton = createDownloadButton(file);
     const removeButton = document.createElement("button");
-    removeButton.textContent = "Delete";
+    removeButton.innerHTML = '<i class="fas fa-trash-alt fa-lg"></i>';
     removeButton.classList.add("file-action-button", "remove-button");
     removeButton.addEventListener("click", () => {
       files = files.filter((f) => f !== file);
@@ -50,6 +50,13 @@ function renderFileList() {
     });
 
     const convertButton = createConvertButton(file);
+    convertButton.innerHTML = '<i class="fas fa-file-code fa-lg"></i>';
+    
+    // Aggiungi tooltip alle icone
+    convertButton.title = "Xml";
+    downloadButton.title = "Excel";
+    removeButton.title = "Delete";
+
     fileActionButtons.appendChild(convertButton);
     fileActionButtons.appendChild(downloadButton);
     fileActionButtons.appendChild(removeButton);
@@ -58,6 +65,7 @@ function renderFileList() {
     fileList.appendChild(listItem);
   });
 }
+
 
 function sortFilesBy(property) {
   files.sort((a, b) => {
@@ -132,22 +140,22 @@ function convertFileToXml(file) {
 
 
 function createDownloadButton(file) {
-	const downloadButton = document.createElement("button");
-	downloadButton.textContent = "EXCEL";
-	downloadButton.addEventListener("click", () => {
-		const fileURL = URL.createObjectURL(file);
-		const a = document.createElement("a");
-		a.href = fileURL;
-		a.download = file.name;
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
+  const downloadButton = document.createElement("button");
+  downloadButton.innerHTML = '<i class="fas fa-file-excel fa-lg"></i>';
+  downloadButton.addEventListener("click", () => {
+    const fileURL = URL.createObjectURL(file);
+    const a = document.createElement("a");
+    a.href = fileURL;
+    a.download = file.name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 
-		addToActivityList(`File downloaded: ${file.name}`);
-
-	});
-	return downloadButton;
+    addToActivityList(`File downloaded: ${file.name}`);
+  });
+  return downloadButton;
 }
+
 
 function startProgressBar() {
 	let width = 0;
@@ -516,3 +524,7 @@ document.addEventListener('click', (event) => {
   }
 });
 
+deleteAllButton.addEventListener("click", () => {
+  files = [];
+  renderFileList();
+});
