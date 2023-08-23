@@ -408,7 +408,7 @@ h2 {
 }
 
 #tab2 {
-  height: 71.8vh;
+  height: 72vh;
 }
  
 #fileList {
@@ -588,7 +588,7 @@ h2 {
 }
 
 #tab3{
-	height: 71.8vh;
+	height: 72vh;
 	/* overflow-y: scroll; */
 	position: relative;
 }
