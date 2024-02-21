@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		logger.info("Start!");
-		String excelFilePath = "C://Users//Tornaboni-Dk//Documents//Fattori_di_Ripartizione.xlsx";
+		String excelFilePath = "C://Users//YourUser//Documents//Fattori_di_Ripartizione.xlsx";
 
 		logger.info("Reading xlsx file..");
 		ExcelReader reader = new ExcelReader();
